@@ -1,0 +1,207 @@
+/* Import Local SCSS Files */
+@import 'variables', 'reset', 'fonts';
+
+.windows-wrap{
+  width: 1200px; height: 90vh;
+  margin: 5vh auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px $Text-Tertiary;
+  background: linear-gradient($Primary-Default, $Primary-Dark);
+  .windows-inner{
+    width: 98%; height: inherit;
+    margin: auto;
+    .header{
+      height: 110px;
+      position: sticky;
+      left: 0; top: 0;
+      z-index: 1000000;
+      background: linear-gradient($Primary-Default, $Primary-Dark);
+      .header-status-line{
+        height: inherit;
+        .header-myInfo{
+          height: 50%;
+          display: flex;
+          justify-content: end;
+          .header-myInfo-text{
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            i{
+              font-size: 20px;
+              color: $White;
+            }
+            p{
+              font-size: $h5-px;
+              font-family: $Pixel-font;
+              color: $White;
+            }
+          }
+          .header-myInfo-buttons{
+            ul{
+              display: flex;
+              li{
+                width: 50px; height: 40px;
+                border-radius: 0 0 5px 5px;
+                border: 2px solid $Primary-Dark;
+                background-color: $Primary-Default;
+                transition: .35s;
+                a{
+                  width: inherit; height: inherit;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  i{
+                    padding-right: 3px;
+                    padding-bottom: 5px;
+                    font-size: 25px;
+                    color: $White;
+                  }
+                }
+                &:hover{
+                  border: 2px solid $Primary-Default;
+                  background-color: $Primary-Dark;
+                }
+                &.mail{
+                  width: 70px;
+                  border: 2px solid $Secondary-Dark;
+                  background-color: $Secondary-Default;
+                  &:hover{
+                    border: 2px solid $Secondary-Default;
+                  background-color: $Secondary-Dark;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .header-tab-line{
+          height: 50%;
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          box-shadow: 0 0 5px rgba($Text-Tertiary, .5);
+          background-color: $Background;
+          .header-nav{
+            ul{
+              height: 100%;
+              display: flex;
+              li{
+                width: 280px; height: 100%;
+                a{
+                  width: inherit; height: inherit;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  box-shadow: 0 0 5px rgba($Black, .25);
+                  background-color: $Background;
+                  font-family: $Pixel-font;
+                  font-size: $h4-px;
+                  transition: .35s;
+                  &:hover{
+                    font-weight: bold;
+                    background-color: $White;
+                  }
+                }
+              }
+            }
+          }
+          .header-option-button{
+            width: 70px;
+            box-shadow: 0 0 5px rgba($Black, .25);
+            background-color: $Accent-Default;
+            cursor: pointer;
+            transition: .35s;
+            i{
+              font-size: 24px;
+              color: $White;
+              transition: .35s;
+            }
+          }
+          .option-list{
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            right: 0; top: 100%;
+            background: -5px 5px 5px rgba($Text-Tertiary, .25);
+            .option{
+              &.language{}
+              &.download{}
+              > li{
+                b{
+                  width: 280px;
+                  height: 50px;
+                  padding: 20px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  background: $White;
+                  font-family: $Pixel-font;
+                  font-size: $h4-px;
+                  cursor: pointer;
+                  i{
+                    font-family: $Pixel-font;
+                    font-style: normal;
+                    transition: .35s;
+                  }
+                }
+                ul{
+                  display: none;
+                  &.visible{
+                    display: block;
+                  }
+                  li{
+                    width: 280px;
+                    height: 50px;
+                    button{
+                      width: inherit; height: inherit;
+                      padding-left: 40px;
+                      background-color: $White;
+                      font-family: $Pixel-font;
+                      font-size: $h4-px;
+                      text-align: left;
+                      cursor: pointer;
+                      &.en{}
+                      &.ko{}
+                      &.ja{}
+                      &:hover{
+                        background-color: $Accent-Light;
+                      }
+                    }
+                  }
+                }
+              }
+              &.download{
+                li{
+                  button{
+                    &.ja{
+                      font-size: $h5-px;
+                      font-family:$Pixel-font-JP;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main{
+      width: 100%; height: calc(90vh - 110px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: relative;
+      // scrollbar
+      &::-webkit-scrollbar{
+        width: 13px;
+      }
+      &::-webkit-scrollbar-thumb{
+        background-color: rgba($Primary-Default, .25);
+      }
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+    }
+  }
+}

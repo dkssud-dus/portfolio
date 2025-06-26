@@ -1,0 +1,324 @@
+/* Import Local SCSS Files */
+@import 'variables', 'reset', 'fonts', 'windows';
+
+/* common */
+body {
+  overflow-x: hidden;
+}
+
+main{
+  background-color: $White;
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(90vh - 110px);
+}
+
+.page-title{
+  font-family: $Pixel-font;
+  font-size: $h1-px;
+  font-weight: bold;
+  color: $Primary-Default;
+}
+
+.title-box{
+  margin-bottom: 65px;
+  .section-title{
+    margin-bottom: 20px;
+    font-family: $Pixel-font;
+    font-size: $h2-px;
+    font-weight: bold;
+    text-align: center;
+    color: $Primary-Default;
+  }
+  .section-desc{
+    text-align: center;
+  }
+}
+
+/* HOME tab button color */
+.windows-wrap{
+  .windows-inner{
+    .header{
+      .header-status-line{
+        .header-tab-line{
+          .header-nav{
+            ul{
+              li:nth-child(1){
+                a{
+                  background-color: $White;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* section .intro */
+.intro{
+  gap: 50px;
+  .page-title{}
+  .catchphrase-box{
+    width: 560px; height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    box-shadow: 0 0 5px $Text-Tertiary;
+    p{}
+  }
+}
+
+/* section .skill */
+.skill{
+  .title-box{
+    .section-title{}
+    .section-desc{}
+  }
+  .skill-buttons{
+    ul{
+      width: 300px; height: 50px;
+      display: flex;
+      justify-content: baseline;
+      align-items: center;
+      flex-direction: row;
+      border-radius: 5px;
+      background-color: $Primary-Default;
+      li{
+        height: 100%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        button{
+          width: 95%; height: 85%;
+          background-color: transparent;
+          font-family: $Pixel-font;
+          font-size: $h5-px;
+          color: $White;
+          cursor: pointer;
+          &.lang{}
+          &.techTool{}
+          &.active{
+            box-shadow: inset 3px 3px 5px rgba($Text-Primary, .4) ;
+            background-color: $Primary-Dark;
+          }
+        }
+      }
+    }
+  }
+  .skill-list{
+    width: 560px;
+    height: auto;
+    margin-top: 25px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    background-color: $Accent-Light;
+    ul{
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      li{
+        position: relative;
+        &:hover{
+          span{
+            display: block;
+          }
+        }
+        img{
+          width: 50px; height: 50px;
+          object-fit: contain;
+          cursor: pointer;
+        }
+        span{
+          width: 300px; height: auto;
+          padding: 20px;
+          position: absolute;
+          top: 120%; left: 50%; transform: translateX(-50%);
+          z-index: 10;
+          display: none;
+          border-radius: 7px;
+          background-color: rgba($Black, .5);
+          backdrop-filter: blur(10px);
+          line-height: 150%;
+          color: $White;
+          &::after{
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            bottom: 100%; left: 50%; transform: translateX(-50%);
+            border-style: solid;
+            border-width: 0px 7px 10px 7px;
+            border-color: transparent transparent rgba($Black, .5) transparent;
+            backdrop-filter: blur(10px);
+          }
+        }
+      }
+      &.lang{
+        li{
+          img{
+            width: 70px; height: 50px;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* section .works */
+.works{
+  .title-box{
+    .section-title{}
+    .section-desc{}
+  }
+  .works-view-more-box{
+    width: 560px; height: 400px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 7px;
+    .works-view-more-box-overlay{
+      width: inherit; height: inherit;
+      background-color: rgba($Black, .5);
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 100;
+      transition: .1s;
+      span{
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: $Pixel-font;
+        font-size: $h4-px; font-weight: bold;
+        color: $White;
+        transition: .35s;
+      }
+    }
+    .works-line{
+      position: relative;
+      top: -50%; left: 30%; transform: translateX(-50%) rotate(-22.5deg);
+      display: flex;
+      flex-direction: row;
+      li{
+        img{
+          width: 180px; height: 300px;
+          object-fit: cover;
+          overflow: hidden;
+        }
+      }
+    }
+    &:hover{
+      .works-view-more-box-overlay{
+        background-color: rgba($Black, .7);
+        span{
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
+
+/* section .study */
+.study{
+  .title-box{
+    .section-title{}
+    .section-desc{}
+  }
+  .study-view-more-button{
+    width: 200px; height: 50px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba($Text-Tertiary, .75);
+    background-color: $Primary-Default;
+    font-family: $Pixel-font;
+    font-size: $h4-px; font-weight: bold;
+    color: $White;
+    transition: .35s;
+    &:hover{
+      background-color: $Primary-Dark;
+      font-size: 28px;
+    }
+  }
+  .study-view-more-box{
+    .study-line{
+      margin-bottom: 10px;
+      display: flex;
+      animation: studyImg infinite 10s linear alternate;
+      li{
+        img{
+          width: 120px; height: 150px;
+          object-fit: cover;
+          overflow: hidden;
+          box-shadow: 0 0 10px rgba($Text-Tertiary, .2);
+        }
+      }
+      &.no1{}
+      &.no2{
+        animation: studyImg infinite 10s linear alternate-reverse;
+      }
+    }
+  }
+}
+
+@keyframes studyImg{
+  0%{transform: translateX(0);}
+  100%{transform: translateX(300px);}
+}
+
+/* section .aboutMe */
+.aboutMe{
+  .title-box{
+    margin-bottom: 100px;
+    .section-title{}
+    .section-desc{}
+  }
+  .aboutMe-box{
+    .about-my-history-list{
+      > li{
+        display: flex;
+        b{
+          width: 200px;
+          padding: 0 30px;
+          padding-top: 50px;
+          position: relative;
+          font-family: $Pixel-font;
+          font-size: $h3-px;
+          color: $Primary-Default;
+          text-align: center;
+          &::after{
+            content: '●';
+            position: absolute;
+            right: -10px;
+          }
+        }
+        .about-my-experience-list{
+          padding: 20px 0;
+          border-left: 3px solid $Primary-Default;
+          li{
+            padding: 0 50px;
+            line-height: 150%;
+            color: $Text-Secondary;
+          }
+        }
+      }
+    }
+  }
+}

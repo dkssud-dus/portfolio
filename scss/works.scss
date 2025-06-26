@@ -1,0 +1,32 @@
+/* Import Local SCSS Files */
+@import 'variables', 'reset', 'fonts', 'windows';
+
+/* common */
+body {
+  overflow-x: hidden;
+}
+
+section{
+  background-color: $White;
+}
+
+/* HOME tab button color */
+.windows-wrap{
+  .windows-inner{
+    .header{
+      .header-status-line{
+        .header-tab-line{
+          .header-nav{
+            ul{
+              li:nth-child(2){
+                a{
+                  background-color: $White;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

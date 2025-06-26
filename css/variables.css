@@ -1,0 +1,15 @@
+/* Import Local SCSS Files */ /* Pretendard JP */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-jp.min.css");
+/* PF StardustS */
+@font-face {
+  font-family: "PFStardustS";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/PFStardustS.woff2") format("woff2");
+}
+/* Galmuri14 (JP Pixcel) */
+@font-face {
+  font-family: "Galmuri14";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri14.woff2") format("woff2");
+}
+/* color */
+/* fonts */
+/* font size */
