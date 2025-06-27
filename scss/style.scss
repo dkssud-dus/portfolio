@@ -22,6 +22,7 @@ section{
   font-family: $Pixel-font;
   font-size: $h1-px;
   font-weight: bold;
+  text-align: center;
   color: $Primary-Default;
 }
 
@@ -36,6 +37,7 @@ section{
     color: $Primary-Default;
   }
   .section-desc{
+    margin: auto;
     text-align: center;
   }
 }
@@ -72,6 +74,7 @@ section{
     align-items: center;
     border-radius: 50px;
     box-shadow: 0 0 5px $Text-Tertiary;
+    text-align: center;
     p{}
   }
 }
@@ -261,7 +264,7 @@ section{
     .study-line{
       margin-bottom: 10px;
       display: flex;
-      animation: studyImg infinite 10s linear alternate;
+      animation: studyImg infinite 60s linear alternate;
       li{
         img{
           width: 120px; height: 150px;
@@ -272,7 +275,7 @@ section{
       }
       &.no1{}
       &.no2{
-        animation: studyImg infinite 10s linear alternate-reverse;
+        animation: studyImg infinite 60s linear alternate-reverse;
       }
     }
   }
@@ -313,9 +316,105 @@ section{
           padding: 20px 0;
           border-left: 3px solid $Primary-Default;
           li{
+            margin-bottom: 10px;
             padding: 0 50px;
             line-height: 150%;
             color: $Text-Secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  /* common */
+  section{
+    height: calc( 150vh - 80px );
+  }
+
+  .page-title{
+    font-size: 50px;
+  }
+
+  .title-box{
+    margin-bottom: 30px;
+    .section-title{
+      margin-bottom: 10px;
+      font-size: $h2-px;
+    }
+    .section-desc{
+      width: 95%;
+      font-size: 15px;
+    }
+  }
+
+  /* section .intro */
+  .intro{
+    height: calc( 95vh - 80px );
+    gap: 25px;
+    .catchphrase-box{
+      width: 90%;
+      height: 50px;
+      padding: 30px;
+    }
+  }
+
+  /* section .skill */
+  .skill{
+    .skill-list{
+      width: 90%;
+      ul{
+        gap: 20px;
+        li{
+          img{}
+          span{
+            width: 200px;
+          }
+        }
+      }
+    }
+  }
+
+  /* section .works */
+  .works{
+    .works-view-more-box{
+      width: 90%; height: 300px;
+      .works-view-more-box-overlay{
+        width: 100%;
+      }
+    }
+  }
+  
+  /* section .study */
+  .study{
+    .study-view-more-box{
+      .study-line{
+        li{
+          img{
+            width: 70px; height: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  /* section .aboutMe */
+  .aboutMe{
+    .aboutMe-box{
+      .about-my-history-list{
+        > li{
+          b{
+            flex: 1;
+            padding: 0 10px;
+            padding-top: 50px;
+            font-size: $h4-px;
+          }
+          .about-my-experience-list{
+            flex: 3;
+            li{
+              font-size: 15px;
+            }
           }
         }
       }

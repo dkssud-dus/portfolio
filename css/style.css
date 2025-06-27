@@ -40,7 +40,7 @@
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard JP";
   line-height: 120%;
   letter-spacing: -0.05rem;
 }
@@ -249,7 +249,7 @@ textarea[disabled] {
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard JP";
   line-height: 120%;
   letter-spacing: -0.05rem;
 }
@@ -555,7 +555,7 @@ textarea[disabled] {
   position: absolute;
   right: 0;
   top: 100%;
-  background: -5px 5px 5px rgba(153, 153, 153, 0.25);
+  box-shadow: -5px 5px 5px rgba(153, 153, 153, 0.25);
 }
 .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li b {
   width: 280px;
@@ -593,6 +593,10 @@ textarea[disabled] {
   font-size: 24px;
   text-align: left;
   cursor: pointer;
+  transition: 0.35s;
+}
+.windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button.active {
+  background-color: #FDE6B8;
 }
 .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button:hover {
   background-color: #FFF9DB;
@@ -618,6 +622,74 @@ textarea[disabled] {
   background-color: transparent;
 }
 
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    background-color: #5b8bd0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(10px);
+    background-color: rgba(91, 139, 208, 0.75);
+  }
+}
+@media (max-width: 768px) {
+  .windows-wrap {
+    width: 98%;
+    height: 95vh;
+    margin: 2.5vh auto;
+  }
+  .windows-wrap .windows-inner {
+    width: 95%;
+  }
+  .windows-wrap .windows-inner .header {
+    height: 80px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text {
+    gap: 5px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text i {
+    font-size: 13px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text p {
+    font-size: 13px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li {
+    width: 40px;
+    height: 30px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li a i {
+    font-size: 18px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li.mail {
+    width: 40px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li {
+    width: 100px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li a {
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li b {
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li {
+    width: 160px;
+    height: 40px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button {
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option.download li button.ja {
+    font-size: 17px;
+  }
+  .windows-wrap .windows-inner .main {
+    height: calc(95vh - 80px);
+  }
+}
 /* common */
 body {
   overflow-x: hidden;
@@ -639,6 +711,7 @@ section {
   font-family: "PFStardustS";
   font-size: 96px;
   font-weight: bold;
+  text-align: center;
   color: #5B8BD0;
 }
 
@@ -654,6 +727,7 @@ section {
   color: #5B8BD0;
 }
 .title-box .section-desc {
+  margin: auto;
   text-align: center;
 }
 
@@ -674,6 +748,7 @@ section {
   align-items: center;
   border-radius: 50px;
   box-shadow: 0 0 5px #999;
+  text-align: center;
 }
 /* section .skill */
 .skill .skill-buttons ul {
@@ -846,7 +921,7 @@ section {
 .study .study-view-more-box .study-line {
   margin-bottom: 10px;
   display: flex;
-  animation: studyImg infinite 10s linear alternate;
+  animation: studyImg infinite 60s linear alternate;
 }
 .study .study-view-more-box .study-line li img {
   width: 120px;
@@ -856,7 +931,7 @@ section {
   box-shadow: 0 0 10px rgba(153, 153, 153, 0.2);
 }
 .study .study-view-more-box .study-line.no2 {
-  animation: studyImg infinite 10s linear alternate-reverse;
+  animation: studyImg infinite 60s linear alternate-reverse;
 }
 
 @keyframes studyImg {
@@ -894,7 +969,75 @@ section {
   border-left: 3px solid #5B8BD0;
 }
 .aboutMe .aboutMe-box .about-my-history-list > li .about-my-experience-list li {
+  margin-bottom: 10px;
   padding: 0 50px;
   line-height: 150%;
   color: #666;
+}
+
+@media (max-width: 768px) {
+  /* common */
+  section {
+    height: calc(150vh - 80px);
+  }
+  .page-title {
+    font-size: 50px;
+  }
+  .title-box {
+    margin-bottom: 30px;
+  }
+  .title-box .section-title {
+    margin-bottom: 10px;
+    font-size: 48px;
+  }
+  .title-box .section-desc {
+    width: 95%;
+    font-size: 15px;
+  }
+  /* section .intro */
+  .intro {
+    height: calc(95vh - 80px);
+    gap: 25px;
+  }
+  .intro .catchphrase-box {
+    width: 90%;
+    height: 50px;
+    padding: 30px;
+  }
+  /* section .skill */
+  .skill .skill-list {
+    width: 90%;
+  }
+  .skill .skill-list ul {
+    gap: 20px;
+  }
+  .skill .skill-list ul li span {
+    width: 200px;
+  }
+  /* section .works */
+  .works .works-view-more-box {
+    width: 90%;
+    height: 300px;
+  }
+  .works .works-view-more-box .works-view-more-box-overlay {
+    width: 100%;
+  }
+  /* section .study */
+  .study .study-view-more-box .study-line li img {
+    width: 70px;
+    height: 100px;
+  }
+  /* section .aboutMe */
+  .aboutMe .aboutMe-box .about-my-history-list > li b {
+    flex: 1;
+    padding: 0 10px;
+    padding-top: 50px;
+    font-size: 24px;
+  }
+  .aboutMe .aboutMe-box .about-my-history-list > li .about-my-experience-list {
+    flex: 3;
+  }
+  .aboutMe .aboutMe-box .about-my-history-list > li .about-my-experience-list li {
+    font-size: 15px;
+  }
 }

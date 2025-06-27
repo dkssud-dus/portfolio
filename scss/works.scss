@@ -6,11 +6,44 @@ body {
   overflow-x: hidden;
 }
 
-section{
+main{
+  overflow-y: scroll;
+  position: relative;
   background-color: $White;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  // scrollbar
+  &::-webkit-scrollbar{
+    width: 13px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: rgba($Primary-Default, .25);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &.modal-open{
+    overflow: hidden;
+  }
 }
 
-/* HOME tab button color */
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(90vh - 110px);
+}
+
+.page-title{
+  margin-bottom: 65px;
+  font-family: $Pixel-font;
+  font-size: $h1-px;
+  font-weight: bold;
+  text-align: center;
+  color: $Primary-Default;
+}
+
+/* WORKS tab button color */
 .windows-wrap{
   .windows-inner{
     .header{
@@ -22,6 +55,570 @@ section{
                 a{
                   background-color: $White;
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* section .works */
+.works{
+  position: relative;
+  .modal-overlay{
+    display: none;
+    position: fixed;
+    width: 100%; height: 100%;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    z-index: 1000000000000000000000000;
+    background-color: rgba($Black, .5);
+    &.open{
+      display: block;
+    }
+  }
+  .title-box{
+    margin-top: 60px;
+    margin-bottom: 25px;
+    .page-title{}
+    .filter-buttons{
+      > ul{
+        display: flex;
+        gap: 60px;
+        > li{
+          width: 160px; height: 50px;
+          .filter-button{
+            width: inherit; height: inherit;
+            display: block;
+            background-color: $White;
+            font-family: $Pixel-font;
+            font-size: $h4-px;
+            box-shadow: 0 0 4px rgba($Black, .5);
+            cursor: pointer;
+            &:hover{
+              background-color: $Accent-Light;
+            }
+            &.active{
+              background-color: $Accent-Default;
+            }
+          }
+          .filter-list{
+            width: 310%;
+            max-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            transition: .35s;
+            &.open{
+              max-height: 1000px;
+            }
+            li{
+              width: 160px; height: 50px;
+              position: relative;
+              z-index: 100;
+              button{
+                width: inherit; height: inherit;
+                display: block;
+                background-color: rgba($White, .5);
+                backdrop-filter: blur(10px);
+                font-family: $Pixel-font;
+                font-size: $h4-px;
+                transition: .35s;
+                cursor: pointer;
+              }
+              &:hover button{
+                background-color: $Accent-Light;
+              }
+              &.active button{
+                background-color: $Accent-Default;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .project-list{
+    height: auto;
+    .no-results {
+      padding: 40px;
+      font-family: $Pixel-font;
+      font-size: $h3-px;
+      font-style: italic;
+      text-align: center;
+      color: $Text-Secondary;
+    }
+    ul{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      .project-card{
+        width: 380px; height: 230px;
+        margin-bottom: 20px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 10px;
+        box-shadow: 0 0 5px rgba($Text-Tertiary, .5);
+        background-color: $White;
+        cursor: pointer;
+        overflow: hidden;
+        .project-overlay{
+          width: 100%; height: 100%;
+          opacity: 0;
+          position: absolute;
+          top: 0; left: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: rgba($Black, .5);
+          transition: .35s;
+          span{
+            font-family: $Pixel-font;
+            font-size: $h4-px;
+            font-weight: bold;
+            color: $White;
+          }
+          strong{
+            font-family: $Pixel-font;
+            font-size: $h5-px;
+            font-weight: normal;
+            color: $White;
+            white-space: pre;
+          }
+        }
+        .project-title{
+          width: 100%; height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p{
+            font-size: $h5-px;
+          }
+        }
+        .project-image{
+          width: 98%; height: 175px;
+          text-align: center;
+          img{
+            border-radius: 5px 5px 0 0 ;
+            box-shadow: 0 0 5px rgba($Text-Tertiary, .3);
+            width: inherit;
+          }
+        }
+        &:hover{
+          .project-overlay{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* div .project-modal */
+.project-modal{
+  display: none;
+  width: 1100px; height: 700px;
+  padding: 20px;
+  position: fixed;
+  top: 56%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 10000000000000000000000000;
+  border-radius: 7px;
+  background-color: $White;
+  &.open{
+    display: block;
+  }
+  .title-box{
+    position: relative;
+    .title{
+      margin-bottom: 20px;
+      font-family: $Pixel-font;
+      font-size: $h2-px;
+      font-weight: bold;
+      text-align: center;
+      color: $Primary-Default;
+    }
+    .modal-close-button{
+      background-color: transparent;
+      position: absolute;
+      top: 0; right: 0;
+      font-family: $Pixel-font;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  }
+  .project-box{
+    display: flex;
+    flex-direction: row;
+    .project-info-box{
+      flex: 1; height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: scroll;
+      &::-webkit-scrollbar{
+        width: 13px;
+      }
+      &::-webkit-scrollbar-thumb{
+        background-color: rgba($Primary-Default, .25);
+      }
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      .project-info-basic{
+        .lang-title{
+          margin-bottom: 10px;
+          font-size: $h3-px; font-weight: bold;
+        }
+        .project-demo-buttons{
+          margin-bottom: 25px;
+          display: flex;
+          gap: 20px;
+          li{
+            width: 90px; height: 30px;
+            .project-demo-button{
+              width: 100%; height: inherit;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 10px;
+              background-color: $Background;
+              font-family: $Pixel-font;
+              font-size: 18px;
+              transition: .35s;
+              cursor: pointer;
+              &:hover{
+                background-color: $Primary-Default;
+                color: $White;
+              }
+              &.mobile{}
+              &.tablet{}
+              &.desktop{}
+            }
+          }
+        }
+      }
+      .project-info-schedule{
+        margin-bottom: 25px;
+        .project-schedule{
+          margin-bottom: 10px;
+          font-size: $h5-px; font-weight: bold;
+        }
+        p{}
+      }
+      .project-info-overview{
+        h5{
+          margin-bottom: 10px;
+          font-size: $h5-px;
+          font-weight: bold;
+        }
+        > ul{
+          margin-bottom: 15px;
+          b{
+            margin-bottom: 10px;
+          }
+          .overview-list{
+            margin-left: 20px;
+            margin-bottom: 5px;
+            padding-left: 10px;
+            list-style: decimal;
+            line-height: 150%;
+          }
+        }
+        .before{
+          > li{
+            b{
+              color: $Text-Tertiary;
+            }
+            ul{
+              .overview-list{}
+            }
+          }
+        }
+        .after{
+          > li{
+            b{
+              color: $Primary-Default;
+            }
+            ul{
+              .overview-list{}
+            }
+          }
+        }
+      }
+    }
+    .project-content-box{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .project-image-swiper{
+        width: 540px;
+        margin-bottom: 10px;
+        .swiper-wrapper{
+          .swiper-slide{
+            img{
+              width: 540px; height: 265px;
+              overflow: hidden;
+              object-fit: cover;
+            }
+          }
+        }
+        .swiper-button-next{
+          width: 60px; height: 60px;
+          display: flex;
+          position: absolute;
+          right: 0;
+          border-radius: 50%;
+          background-color: rgba($Black, .5);
+          filter: invert(100px);
+          color: transparent;
+          transition: .35s;
+          i{
+            width: inherit; height: inherit;
+            margin-top: 7px;
+            margin-left: 20px;
+            display: block;
+            font-family: $Pixel-font;
+            font-size: 40px;
+            font-style: normal;
+            color: $White;
+            transition: .35s;
+          }
+          &:hover{
+            background-color: rgba($White, .5);
+            i{
+              color: $Primary-Dark;
+            }
+          }
+        }
+        .swiper-button-prev{
+          width: 60px; height: 60px;
+          display: flex;
+          position: absolute;
+          left: 0;
+          border-radius: 50%;
+          background-color: rgba($Black, .5);
+          filter: invert(100px);
+          color: transparent;
+          transition: .35s;
+          i{
+            width: inherit; height: inherit;
+            margin-top: 7px;
+            margin-left: 10px;
+            font-family: $Pixel-font;
+            font-size: 40px;
+            font-style: normal;
+            color: $White;
+            transition: .35s;
+          }
+          &:hover{
+            background-color: rgba($White, .5);
+            i{
+              color: $Primary-Dark;
+            }
+          }
+        }
+      }
+      .keyword{
+        font-family: $Pixel-font-JP;
+        font-size: 13px;
+        color: $Primary-Default;
+        margin-bottom: 25px;
+      }
+      .project-techTool-box{
+        margin-bottom: 25px;
+        h5{
+          margin-bottom: 10px;
+          font-size: $h5-px;
+          font-weight: bold;
+        }
+        .project-techTool-list{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          li{
+            img{
+              width: auto; height: 45px;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+      .project-resource-buttons{
+        ul{
+          display: flex;
+          justify-content: space-between;
+          li{
+            width: 150px; height: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 4px rgba($Black, .5);
+            background-color: $Primary-Default;
+            transition: .35s;
+            a{
+              width: inherit; height: inherit;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-family: $Pixel-font;
+              font-size: $h5-px;
+              color: $White;
+            }
+            &:hover{
+              background-color: $Primary-Dark;
+            }
+            &.github{
+              background-color: $Secondary-Default;
+              a{}
+              &:hover{
+                background-color: $Secondary-Dark;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  main{
+  }
+
+  .page-title{
+    font-size: 50px;
+  }
+
+  .works{
+    .modal-overlay{}
+    .title-box{
+      .page-title{}
+      .filter-buttons{
+        margin: auto;
+        > ul{
+          display: flex;
+          justify-content: center;
+          width: 300px;
+          gap: 7px;
+          > li{
+            width: 120px;
+            .filter-button{
+              width: 120px; height: 40px;
+              font-size: $h5-px;
+            }
+            .filter-list{
+              width: 100%;
+              li{
+                width: 120px;
+                height: 40px;
+                button{
+                  font-size: $h5-px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .project-list{
+      .no-results{
+        font-size: $h5-px;
+      }
+      ul{
+        .project-card{
+          width: 100%;
+          .project-overlay{
+            span{}
+            strong{
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .project-modal{
+    width: 100vw; height: 100vh;
+    overflow-y: scroll;
+    top: 0; left: 0; transform: translate(0);
+    border-radius: 0;
+    .title-box{
+      .title{
+        font-size: $h3-px;
+      }
+      .modal-close-button{
+        top: 40px;
+      }
+    }
+    .project-box{
+      flex-direction: column;
+      .project-info-box{
+        .project-info-basic{
+          .lang-title{
+            font-size: $h4-px;
+          }
+        }
+        .project-info-schedule{
+          .project-schedule{
+            font-size: 18px;
+          }
+        }
+        .project-info-overview{
+          h5{
+            font-size: 18px;
+          }
+        }
+      }
+      .project-content-box{
+        .project-image-swiper{
+          width: 100%;
+          .swiper-wrapper{
+            .swiper-slide{
+              img{
+                width: 100%; height: 160px;
+              }
+            }
+          }
+          .swiper-button-next{
+            width: 50px; height: 50px;
+            i{
+              margin-top: 10px;
+              margin-left: 25px;
+              font-size: 30px;
+            }
+          }
+          .swiper-button-prev{
+            width: 50px; height: 50px;
+            i{
+              margin-top: 10px;
+              margin-left: 17px;
+              font-size: 30px;
+            }
+          }
+        }
+        .project-techTool-box{
+          h5{
+            font-size: 18px;
+          }
+          .project-techTool-list{
+            li{
+              img{
+                height: 35px;
+              }
+            }
+          }
+        }
+        .project-resource-buttons{
+          ul{
+            li{
+              width: 105px;
+              a{
+                font-size: 18px;
               }
             }
           }

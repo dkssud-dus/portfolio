@@ -40,7 +40,9 @@
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard JP";
+  line-height: 120%;
+  letter-spacing: -0.05rem;
 }
 
 html, body, h1, h2, h3, h4, h5, h6, div, p, blockquote, pre, code, address, ul, ol, li, menu, nav, section, article, aside,
@@ -247,7 +249,9 @@ textarea[disabled] {
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard JP";
+  line-height: 120%;
+  letter-spacing: -0.05rem;
 }
 
 html, body, h1, h2, h3, h4, h5, h6, div, p, blockquote, pre, code, address, ul, ol, li, menu, nav, section, article, aside,
@@ -551,7 +555,7 @@ textarea[disabled] {
   position: absolute;
   right: 0;
   top: 100%;
-  background: -5px 5px 5px rgba(153, 153, 153, 0.25);
+  box-shadow: -5px 5px 5px rgba(153, 153, 153, 0.25);
 }
 .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li b {
   width: 280px;
@@ -589,6 +593,10 @@ textarea[disabled] {
   font-size: 24px;
   text-align: left;
   cursor: pointer;
+  transition: 0.35s;
+}
+.windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button.active {
+  background-color: #FDE6B8;
 }
 .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button:hover {
   background-color: #FFF9DB;
@@ -614,16 +622,636 @@ textarea[disabled] {
   background-color: transparent;
 }
 
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    background-color: #5b8bd0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(10px);
+    background-color: rgba(91, 139, 208, 0.75);
+  }
+}
+@media (max-width: 768px) {
+  .windows-wrap {
+    width: 98%;
+    height: 95vh;
+    margin: 2.5vh auto;
+  }
+  .windows-wrap .windows-inner {
+    width: 95%;
+  }
+  .windows-wrap .windows-inner .header {
+    height: 80px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text {
+    gap: 5px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text i {
+    font-size: 13px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text p {
+    font-size: 13px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li {
+    width: 40px;
+    height: 30px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li a i {
+    font-size: 18px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li.mail {
+    width: 40px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li {
+    width: 100px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li a {
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li b {
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li {
+    width: 160px;
+    height: 40px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button {
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option.download li button.ja {
+    font-size: 17px;
+  }
+  .windows-wrap .windows-inner .main {
+    height: calc(95vh - 80px);
+  }
+}
 /* common */
 body {
   overflow-x: hidden;
 }
 
+main {
+  overflow-y: scroll;
+  position: relative;
+  background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+main::-webkit-scrollbar {
+  width: 13px;
+}
+main::-webkit-scrollbar-thumb {
+  background-color: rgba(91, 139, 208, 0.25);
+}
+main::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+main.modal-open {
+  overflow: hidden;
+}
+
 section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(90vh - 110px);
+}
+
+.page-title {
+  margin-bottom: 65px;
+  font-family: "PFStardustS";
+  font-size: 96px;
+  font-weight: bold;
+  text-align: center;
+  color: #5B8BD0;
+}
+
+/* WORKS tab button color */
+.windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li:nth-child(2) a {
   background-color: #fff;
 }
 
-/* HOME tab button color */
-.windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li:nth-child(2) a {
+/* section .works */
+.works {
+  position: relative;
+}
+.works .modal-overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000000000000000000000000;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.works .modal-overlay.open {
+  display: block;
+}
+.works .title-box {
+  margin-top: 60px;
+  margin-bottom: 25px;
+}
+.works .title-box .filter-buttons > ul {
+  display: flex;
+  gap: 60px;
+}
+.works .title-box .filter-buttons > ul > li {
+  width: 160px;
+  height: 50px;
+}
+.works .title-box .filter-buttons > ul > li .filter-button {
+  width: inherit;
+  height: inherit;
+  display: block;
   background-color: #fff;
+  font-family: "PFStardustS";
+  font-size: 24px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.works .title-box .filter-buttons > ul > li .filter-button:hover {
+  background-color: #FFF9DB;
+}
+.works .title-box .filter-buttons > ul > li .filter-button.active {
+  background-color: #FDE6B8;
+}
+.works .title-box .filter-buttons > ul > li .filter-list {
+  width: 310%;
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  transition: 0.35s;
+}
+.works .title-box .filter-buttons > ul > li .filter-list.open {
+  max-height: 1000px;
+}
+.works .title-box .filter-buttons > ul > li .filter-list li {
+  width: 160px;
+  height: 50px;
+  position: relative;
+  z-index: 100;
+}
+.works .title-box .filter-buttons > ul > li .filter-list li button {
+  width: inherit;
+  height: inherit;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  font-family: "PFStardustS";
+  font-size: 24px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.works .title-box .filter-buttons > ul > li .filter-list li:hover button {
+  background-color: #FFF9DB;
+}
+.works .title-box .filter-buttons > ul > li .filter-list li.active button {
+  background-color: #FDE6B8;
+}
+.works .project-list {
+  height: auto;
+}
+.works .project-list .no-results {
+  padding: 40px;
+  font-family: "PFStardustS";
+  font-size: 32px;
+  font-style: italic;
+  text-align: center;
+  color: #666;
+}
+.works .project-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.works .project-list ul .project-card {
+  width: 380px;
+  height: 230px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(153, 153, 153, 0.5);
+  background-color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+}
+.works .project-list ul .project-card .project-overlay {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.35s;
+}
+.works .project-list ul .project-card .project-overlay span {
+  font-family: "PFStardustS";
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+.works .project-list ul .project-card .project-overlay strong {
+  font-family: "PFStardustS";
+  font-size: 20px;
+  font-weight: normal;
+  color: #fff;
+  white-space: pre;
+}
+.works .project-list ul .project-card .project-title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.works .project-list ul .project-card .project-title p {
+  font-size: 20px;
+}
+.works .project-list ul .project-card .project-image {
+  width: 98%;
+  height: 175px;
+  text-align: center;
+}
+.works .project-list ul .project-card .project-image img {
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 5px rgba(153, 153, 153, 0.3);
+  width: inherit;
+}
+.works .project-list ul .project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+/* div .project-modal */
+.project-modal {
+  display: none;
+  width: 1100px;
+  height: 700px;
+  padding: 20px;
+  position: fixed;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999999999999000000000;
+  border-radius: 7px;
+  background-color: #fff;
+}
+.project-modal.open {
+  display: block;
+}
+.project-modal .title-box {
+  position: relative;
+}
+.project-modal .title-box .title {
+  margin-bottom: 20px;
+  font-family: "PFStardustS";
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  color: #5B8BD0;
+}
+.project-modal .title-box .modal-close-button {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: "PFStardustS";
+  font-size: 40px;
+  cursor: pointer;
+}
+.project-modal .project-box {
+  display: flex;
+  flex-direction: row;
+}
+.project-modal .project-box .project-info-box {
+  flex: 1;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+.project-modal .project-box .project-info-box::-webkit-scrollbar {
+  width: 13px;
+}
+.project-modal .project-box .project-info-box::-webkit-scrollbar-thumb {
+  background-color: rgba(91, 139, 208, 0.25);
+}
+.project-modal .project-box .project-info-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.project-modal .project-box .project-info-box .project-info-basic .lang-title {
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: bold;
+}
+.project-modal .project-box .project-info-box .project-info-basic .project-demo-buttons {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 20px;
+}
+.project-modal .project-box .project-info-box .project-info-basic .project-demo-buttons li {
+  width: 90px;
+  height: 30px;
+}
+.project-modal .project-box .project-info-box .project-info-basic .project-demo-buttons li .project-demo-button {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #F4F1EB;
+  font-family: "PFStardustS";
+  font-size: 18px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.project-modal .project-box .project-info-box .project-info-basic .project-demo-buttons li .project-demo-button:hover {
+  background-color: #5B8BD0;
+  color: #fff;
+}
+.project-modal .project-box .project-info-box .project-info-schedule {
+  margin-bottom: 25px;
+}
+.project-modal .project-box .project-info-box .project-info-schedule .project-schedule {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.project-modal .project-box .project-info-box .project-info-overview h5 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.project-modal .project-box .project-info-box .project-info-overview > ul {
+  margin-bottom: 15px;
+}
+.project-modal .project-box .project-info-box .project-info-overview > ul b {
+  margin-bottom: 10px;
+}
+.project-modal .project-box .project-info-box .project-info-overview > ul .overview-list {
+  margin-left: 20px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  list-style: decimal;
+  line-height: 150%;
+}
+.project-modal .project-box .project-info-box .project-info-overview .before > li b {
+  color: #999;
+}
+.project-modal .project-box .project-info-box .project-info-overview .after > li b {
+  color: #5B8BD0;
+}
+.project-modal .project-box .project-content-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.project-modal .project-box .project-content-box .project-image-swiper {
+  width: 540px;
+  margin-bottom: 10px;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-wrapper .swiper-slide img {
+  width: 540px;
+  height: 265px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-next {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: invert(100px);
+  color: transparent;
+  transition: 0.35s;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-next i {
+  width: inherit;
+  height: inherit;
+  margin-top: 7px;
+  margin-left: 20px;
+  display: block;
+  font-family: "PFStardustS";
+  font-size: 40px;
+  font-style: normal;
+  color: #fff;
+  transition: 0.35s;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-next:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-next:hover i {
+  color: #4F76C4;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-prev {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: invert(100px);
+  color: transparent;
+  transition: 0.35s;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-prev i {
+  width: inherit;
+  height: inherit;
+  margin-top: 7px;
+  margin-left: 10px;
+  font-family: "PFStardustS";
+  font-size: 40px;
+  font-style: normal;
+  color: #fff;
+  transition: 0.35s;
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-prev:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.project-modal .project-box .project-content-box .project-image-swiper .swiper-button-prev:hover i {
+  color: #4F76C4;
+}
+.project-modal .project-box .project-content-box .keyword {
+  font-family: "Galmuri14";
+  font-size: 13px;
+  color: #5B8BD0;
+  margin-bottom: 25px;
+}
+.project-modal .project-box .project-content-box .project-techTool-box {
+  margin-bottom: 25px;
+}
+.project-modal .project-box .project-content-box .project-techTool-box h5 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.project-modal .project-box .project-content-box .project-techTool-box .project-techTool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.project-modal .project-box .project-content-box .project-techTool-box .project-techTool-list li img {
+  width: auto;
+  height: 45px;
+  object-fit: cover;
+}
+.project-modal .project-box .project-content-box .project-resource-buttons ul {
+  display: flex;
+  justify-content: space-between;
+}
+.project-modal .project-box .project-content-box .project-resource-buttons ul li {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  background-color: #5B8BD0;
+  transition: 0.35s;
+}
+.project-modal .project-box .project-content-box .project-resource-buttons ul li a {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "PFStardustS";
+  font-size: 20px;
+  color: #fff;
+}
+.project-modal .project-box .project-content-box .project-resource-buttons ul li:hover {
+  background-color: #4F76C4;
+}
+.project-modal .project-box .project-content-box .project-resource-buttons ul li.github {
+  background-color: #D05B5D;
+}
+.project-modal .project-box .project-content-box .project-resource-buttons ul li.github:hover {
+  background-color: #C44F51;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 50px;
+  }
+  .works .title-box .filter-buttons {
+    margin: auto;
+  }
+  .works .title-box .filter-buttons > ul {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    gap: 7px;
+  }
+  .works .title-box .filter-buttons > ul > li {
+    width: 120px;
+  }
+  .works .title-box .filter-buttons > ul > li .filter-button {
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .works .title-box .filter-buttons > ul > li .filter-list {
+    width: 100%;
+  }
+  .works .title-box .filter-buttons > ul > li .filter-list li {
+    width: 120px;
+    height: 40px;
+  }
+  .works .title-box .filter-buttons > ul > li .filter-list li button {
+    font-size: 20px;
+  }
+  .works .project-list .no-results {
+    font-size: 20px;
+  }
+  .works .project-list ul .project-card {
+    width: 100%;
+  }
+  .works .project-list ul .project-card .project-overlay strong {
+    font-size: 18px;
+  }
+  .project-modal {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    transform: translate(0);
+    border-radius: 0;
+  }
+  .project-modal .title-box .title {
+    font-size: 32px;
+  }
+  .project-modal .title-box .modal-close-button {
+    top: 40px;
+  }
+  .project-modal .project-box {
+    flex-direction: column;
+  }
+  .project-modal .project-box .project-info-box .project-info-basic .lang-title {
+    font-size: 24px;
+  }
+  .project-modal .project-box .project-info-box .project-info-schedule .project-schedule {
+    font-size: 18px;
+  }
+  .project-modal .project-box .project-info-box .project-info-overview h5 {
+    font-size: 18px;
+  }
+  .project-modal .project-box .project-content-box .project-image-swiper {
+    width: 100%;
+  }
+  .project-modal .project-box .project-content-box .project-image-swiper .swiper-wrapper .swiper-slide img {
+    width: 100%;
+    height: 160px;
+  }
+  .project-modal .project-box .project-content-box .project-image-swiper .swiper-button-next {
+    width: 50px;
+    height: 50px;
+  }
+  .project-modal .project-box .project-content-box .project-image-swiper .swiper-button-next i {
+    margin-top: 10px;
+    margin-left: 25px;
+    font-size: 30px;
+  }
+  .project-modal .project-box .project-content-box .project-image-swiper .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+  }
+  .project-modal .project-box .project-content-box .project-image-swiper .swiper-button-prev i {
+    margin-top: 10px;
+    margin-left: 17px;
+    font-size: 30px;
+  }
+  .project-modal .project-box .project-content-box .project-techTool-box h5 {
+    font-size: 18px;
+  }
+  .project-modal .project-box .project-content-box .project-techTool-box .project-techTool-list li img {
+    height: 35px;
+  }
+  .project-modal .project-box .project-content-box .project-resource-buttons ul li {
+    width: 105px;
+  }
+  .project-modal .project-box .project-content-box .project-resource-buttons ul li a {
+    font-size: 18px;
+  }
 }

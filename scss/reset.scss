@@ -2,7 +2,7 @@
 @import 'variables';
 
 /* Reset */
-* { outline:0 !important; margin: 0; padding: 0; box-sizing: border-box; color: $Text-Primary;     font-family:'Pretendard-Regular'; line-height: 120%; letter-spacing: -.05rem;}
+* { outline:0 !important; margin: 0; padding: 0; box-sizing: border-box; color: $Text-Primary;     font-family:$Default-font; line-height: 120%; letter-spacing: -.05rem;}
 
 html,body,h1,h2,h3,h4,h5,h6,div,p,blockquote,pre,code,address,ul,ol,li,menu,nav,section,article,aside,
 dl,dt,dd,table,thead,tbody,tfoot,label,caption,th,td,form,fieldset,legend,hr,input,button,textarea,object,figure,figcaption {

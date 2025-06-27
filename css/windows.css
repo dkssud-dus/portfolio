@@ -37,7 +37,9 @@
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-family: "Pretendard-Regular";
+  font-family: "Pretendard JP";
+  line-height: 120%;
+  letter-spacing: -0.05rem;
 }
 
 html, body, h1, h2, h3, h4, h5, h6, div, p, blockquote, pre, code, address, ul, ol, li, menu, nav, section, article, aside,
@@ -341,7 +343,7 @@ textarea[disabled] {
   position: absolute;
   right: 0;
   top: 100%;
-  background: -5px 5px 5px rgba(153, 153, 153, 0.25);
+  box-shadow: -5px 5px 5px rgba(153, 153, 153, 0.25);
 }
 .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li b {
   width: 280px;
@@ -379,6 +381,10 @@ textarea[disabled] {
   font-size: 24px;
   text-align: left;
   cursor: pointer;
+  transition: 0.35s;
+}
+.windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button.active {
+  background-color: #FDE6B8;
 }
 .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button:hover {
   background-color: #FFF9DB;
@@ -402,4 +408,73 @@ textarea[disabled] {
 }
 .windows-wrap .windows-inner .main::-webkit-scrollbar-track {
   background-color: transparent;
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    background-color: #5b8bd0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(10px);
+    background-color: rgba(91, 139, 208, 0.75);
+  }
+}
+@media (max-width: 768px) {
+  .windows-wrap {
+    width: 98%;
+    height: 95vh;
+    margin: 2.5vh auto;
+  }
+  .windows-wrap .windows-inner {
+    width: 95%;
+  }
+  .windows-wrap .windows-inner .header {
+    height: 80px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text {
+    gap: 5px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text i {
+    font-size: 13px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-text p {
+    font-size: 13px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li {
+    width: 40px;
+    height: 30px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li a i {
+    font-size: 18px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-myInfo .header-myInfo-buttons ul li.mail {
+    width: 40px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li {
+    width: 100px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .header-nav ul li a {
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li b {
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li {
+    width: 160px;
+    height: 40px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option > li ul li button {
+    font-size: 20px;
+  }
+  .windows-wrap .windows-inner .header .header-status-line .header-tab-line .option-list .option.download li button.ja {
+    font-size: 17px;
+  }
+  .windows-wrap .windows-inner .main {
+    height: calc(95vh - 80px);
+  }
 }
