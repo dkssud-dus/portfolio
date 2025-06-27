@@ -1,6 +1,6 @@
 
 ---
-`#RedesignProject` `#GameWebsite` `#TeamProject` `#4PeopleTeam` `#PCOnly` 
+`#DesignProject` `#Portfolio` `#Solo` `#Responsive` 
 # **Website Design Project:**
 ### 포트폴리오 Portfolio
 
